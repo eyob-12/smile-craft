@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.brand-color{
+  color:#1CC7C1;
+}
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+  font-family:sans-serif;
+}
+.brand-bg{
+  background-color:#1CC7C1;
+}
+.bg-gray-700 {
+    background-color: #495057; /* This is the color code for Bootstrap's gray-700 */
+}
+.pos{
+   position: 'relative';
+    top: '0px';
+     right: '20px'; 
+}

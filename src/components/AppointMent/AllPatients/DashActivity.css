@@ -1,0 +1,57 @@
+.desh-activity-container {
+  margin: 20px;
+}
+
+.desh-card {
+  width: 200px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.desh-date {
+  flex-direction: column;
+}
+
+.desh-date h2 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.desh-text p {
+  margin: 0;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .desh-card {
+    width: 150px;
+    padding: 15px;
+  }
+
+  .desh-date h2 {
+    font-size: 36px;
+  }
+
+  .desh-text p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .desh-card {
+    width: 120px;
+    padding: 10px;
+  }
+
+  .desh-date h2 {
+    font-size: 28px;
+  }
+
+  .desh-text p {
+    font-size: 12px;
+  }
+}
