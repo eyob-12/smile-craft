@@ -1,5 +1,4 @@
 import React from 'react';
-// import baby from '../../../images/baby.png';
 import baby from '../../../images/doc/doctor chair 2.jpg';
 
 
@@ -20,7 +19,7 @@ const FeaturedService = () => {
                             our skilled professionals are dedicated to ensuring your comfort and satisfaction.
                             Book an appointment today and enjoy dental care that's designed around you!
                         </h5>
-                        <button className="btn btn-primary">Learn More</button>
+                        <button className="btn btn-info">Learn More</button>
                     </div>
                 </div>
             </div>

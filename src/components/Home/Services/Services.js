@@ -9,23 +9,23 @@ const serviceData = [
     {
         name: 'Fluoride Treatment',
         img: flouride,
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quaerat?'
+        desc: 'Fluoride treatment is a dental procedure that helps to prevent tooth decay by making the teeth more resistant to acid attacks from plaque bacteria and sugars in the mouth. It can also reverse early decay. '
     },
     {
         name: 'Cavity Filling',
         img: cavity,
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quaerat?'
+        desc: 'Cavity filling is a common dental procedure used to treat tooth decay and cavities. During this procedure, the dentist removes the decayed portion of the tooth and then fills the area with a dental material such as composite resin, amalgam, gold, or porcelain. '
     },
     {
         name: 'Teeth Whitening',
         img: teath,
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quaerat?'
+        desc: 'Teeth whitening is a cosmetic dental procedure aimed at lightening the natural color of the teeth and removing stains and discoloration. This treatment can be performed in-office by a dentist or at home using custom-fit trays and bleaching gels provided by the dentist.  '
     }
 ]
 
 const Services = () => {
     return (
-        <section className="services-container mt-5" id="serviceContaint">
+        <section className="services-container mt-5 mb-5" id="serviceContaint">
             <div className="text-center">
                 <h5 className="brand-color">OUR SERVICES</h5>
                 <h2>Services We Provide</h2>

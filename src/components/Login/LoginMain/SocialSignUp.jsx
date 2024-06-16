@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
-import { handleLoginWithProvider } from './LoginManager';
-import toast, { Toaster } from 'react-hot-toast';
 
 
 const SocialSignUp = ({ handleResponse }) => {
@@ -10,21 +8,10 @@ const SocialSignUp = ({ handleResponse }) => {
 
     const handleGoogleSignIn = () => {
 
-        // let provider = new firebase.auth.GoogleAuthProvider();
-        // handleLoginWithProvider(provider)
-        //     .then(res => {
-        //         if (res.error) {
-        //             setError(res.error)
-        //         }
-        //         handleResponse(res)
-        //         toast("Successfully logged in")
-        //     })
     }
-
-
     return (
         <div>
-            <div className="social-media">
+            <div className="social-media bg-info">
                 <div className="social-icon" onClick={handleGoogleSignIn}>
                     <FaGoogle />
                 </div>

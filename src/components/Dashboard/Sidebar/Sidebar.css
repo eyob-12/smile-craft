@@ -1,6 +1,7 @@
+
 .sidebar{
     /* background-image: linear-gradient(45deg, #00c0b0, #1CC7C1); */
-    background-color: #16d1ea;
+    background-color: #12bed8;
     position: fixed;
     height: 100vh;
     font-family: sans-serif;
@@ -23,4 +24,10 @@
     padding:0.5rem;
     margin-left: 1rem;
     transition: 0.3s ease-in-out;
+}
+
+.logout-image{
+    width: 70px!important;
+    height:70px!important;
+   
 }

@@ -8,21 +8,17 @@
   
   .pageCloseBtn {
     position: absolute;
-    top: 3px;
-    right: 3px;
+    top: 20px;
+    right: 13px;
     cursor: pointer;
-    height: 1.5rem;
-    width: 1.5rem;
-    border-radius: 50%;
+    width: 150px;
     z-index: 33;
-    color: #000;
-    background: #F0F0F0;
-    border: 1px solid #ACACAC;
-    text-align: center;
     transition: 0.3s;
   }
   .pageCloseBtn:hover {
-    background: #d6d6d6;;
+  background-color: #e8dede;
+  border-radius: 15px 15px;
+
   }
   
   .signInToast {
@@ -42,7 +38,7 @@
     position: absolute;
     width: 2000px;
     height: 2000px;border-radius: 50%;
-    background: linear-gradient(-45deg, #795cf9, #7355F7);
+    background: linear-gradient(-45deg, #000000, #000000);
     top: -10%;
     right: 48%;
     transform: translateY(-50%);
@@ -174,7 +170,7 @@
     transition: .5s;
   }
   .iBtn:hover{
-    background: #4C25F5;
+    background: #0aa4f7;
   }
   
   .social-text {

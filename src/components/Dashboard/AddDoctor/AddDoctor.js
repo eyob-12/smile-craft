@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const AddDoctor = () => {
-    const baseUrl = 'http://localhost:4000';
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const [info, setInfo] = useState({});
     const [file, setFile] = useState(null);
 
@@ -30,6 +31,11 @@ const AddDoctor = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
+            })
+            swal({
+                icon: 'success',
+                text: 'The Doctor has been Added',
+                timer: 2000
             });
             console.log('Doctor added successfully:', response.data);
         } catch (error) {
@@ -58,7 +64,7 @@ const AddDoctor = () => {
                         <label htmlFor="exampleInputPassword">Upload Image</label>
                         <input type="file" onChange={handleFileChange} name="file" id="" placeholder="select File" className="form-control" />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-info mt-4 w-100">Submit</button>
                 </form>
             </div>
         </div>

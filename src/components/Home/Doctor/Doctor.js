@@ -3,9 +3,10 @@ import useFetch from '../../hooks/useFetch';
 import './Doctor.css';
 import DoctorDetail from './DoctorDetail';
 
+
 const Doctor = () => {
-    const baseUrl = "http://localhost:4000";
-    const { data, loading, error } = useFetch(`${baseUrl}/auth/doctors`);
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+    const { data } = useFetch(`${baseUrl}/auth/doctors`);
     return (
         <section className="doctors" id="doctorContaints">
             <div className="container">

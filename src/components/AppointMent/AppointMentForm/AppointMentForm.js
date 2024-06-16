@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 
 const customStyles = {
     content: {
-        top: '50%',
+        top: '57%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
@@ -24,20 +24,22 @@ Modal.setAppElement('#root')
 const AppointMentForm = ({ modalIsOpen, appointMentDate, closeModal, date }) => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const { user } = useContext(AuthContext);
-    const { data, loading, error } = useFetch(`${baseUrl}/auth/doctors`);
-    const { register, handleSubmit, errors } = useForm()
+    const { data, } = useFetch(`${baseUrl}/auth/doctors`);
+    const { register, handleSubmit, } = useForm()
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         data.appointmantDate = date;
         data.serviceTitle = appointMentDate;
         data.user_id = user._id;
         try {
-            await axios.post(`${baseUrl}/auth/addAppointMent`, data)
+            await axios.post(`${baseUrl}/auth/addAppointMent`, data, {
+                withCredentials: true
+            })
             closeModal();
             swal({
                 icon: 'success',
-                text: 'Successfully Appointment Submited',
-                timer: 23
+                text: 'The Appointment has been Reserved',
+                timer: 2000
             })
             navigate("/");
         }
@@ -47,14 +49,15 @@ const AppointMentForm = ({ modalIsOpen, appointMentDate, closeModal, date }) => 
     }
     return (
 
-        <div>
+        <div >
             <Modal
+
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <FontAwesomeIcon icon={faWindowClose} onClick={closeModal} className="m-2 text-primary" />
+                <FontAwesomeIcon icon={faWindowClose} onClick={closeModal} className="m-2 text-primary fs-2" />
                 <h1 className="text-center brand-color">{appointMentDate}</h1>
                 <p className="text-secondary text-center"> On {date.toDateString()}</p>
                 <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
@@ -69,10 +72,10 @@ const AppointMentForm = ({ modalIsOpen, appointMentDate, closeModal, date }) => 
                     </div>
                     <div className="form-group mb-2">
                         <select className="form-control" name="doctor_id"  {...register("doctor_id", { required: true })}>
-                            <option disabled={true} value="Not set">Select Doctor</option>
+                            <option >Select Doctor</option>
                             {
                                 data && data.map((item) => (
-                                    <option value={item._id} key={item._id + 20000}>{item.username}</option>
+                                    <option value={item._id} key={item._id + 20000}>{item.name}</option>
                                 ))
                             }
                         </select>
@@ -95,7 +98,7 @@ const AppointMentForm = ({ modalIsOpen, appointMentDate, closeModal, date }) => 
                     </div>
 
                     <div className="form-group text-right mt-2">
-                        <button type="submit" className="btn btn-primary">Send</button>
+                        <button type="submit" className="btn btn-outline-info w-100">Make Appointment</button>
                     </div>
                 </form>
 

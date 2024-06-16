@@ -1,40 +1,42 @@
 import mongoose from 'mongoose';
 const appointMentSchema = new mongoose.Schema({
-    username:{
+    username: {
         type: String,
-        required:true,
-    }, 
-    phone:{
+        required: true,
+    },
+    phone: {
         type: String,
     },
-    email:{
+    email: {
         type: String,
-        required:true,
-    }, 
-    gender:{
+        required: true,
+    },
+    gender: {
         type: String,
     },
-    age:{
+    age: {
         type: String
     },
-    weight:{
+    weight: {
         type: String,
     },
-    serviceTitle:{
+    serviceTitle: {
         type: String
     },
-    appointmantDate:{
+    appointmantDate: {
         type: String,
-        required:true
+        required: true
     },
-    doctor_id:{
-        type: String,
-        required:true
+    doctor_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctor',
+        required: true
     },
-    user_id:{
-        type: String,
-        required:true
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 export default mongoose.model('Appointments', appointMentSchema)

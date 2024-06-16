@@ -5,6 +5,9 @@
     align-items: center;
     max-width: 50%; /* Adjust based on your preference */
 }
+.bg{
+   background-color: #007bff; 
+}
 
 .calendar-design {
     border: 2px solid #ddd;
@@ -13,7 +16,7 @@
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 600px;
-    font-size: 40px;
+    font-size: 20px;
     
 }
 

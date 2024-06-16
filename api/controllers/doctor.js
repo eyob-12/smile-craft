@@ -84,52 +84,66 @@ export const DoctorList = async (req, res, next) => {
 }
 export const UpdateUserInfo = async (req, res, next) => {
     try {
-        const response = await Users.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+        // console.log("Request Body:", req.body);
+        const response = await Doctor.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
         res.status(200).json(response)
     } catch (err) {
         next(err)
     }
 }
-
-export const AddAppointMentCollection = async (req, res, next) => {
-    const saveAppoint = new appointMentSchema(req.body)
+export const deleteDoctor = async (req, res, next) => {
     try {
-        const addpointment = await saveAppoint.save();
-        res.status(200).json(addpointment)
-    }
-    catch (err) {
+        const doctorId = req.params.id;
+        const response = await Doctor.findByIdAndDelete(doctorId);
+
+        if (!response) {
+            return res.status(404).json({ message: 'Doctor not found' });
+        }
+
+        res.status(200).json({ message: 'Doctor deleted successfully' });
+    } catch (err) {
         next(err);
     }
-}
+};
+
+export const AddAppointMentCollection = async (req, res, next) => {
+    const { username, phone, email, doctor_id, gender, age, weight, appointmantDate, serviceTitle, user_id } = req.body;
+
+    // Basic validation
+    if (!username || !phone || !email || !doctor_id || !gender || !age || !weight || !appointmantDate || !serviceTitle || !user_id) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const newAppointment = new appointMentSchema(req.body);
+
+    try {
+        const addedAppointment = await newAppointment.save();
+        res.status(201).json({ message: "Appointment successfully added", data: addedAppointment });
+    } catch (err) {
+        res.status(500).json({ message: "Error adding appointment", error: err.message });
+        next(err);
+    }
+};
 
 //Appopintment PatientList
 export const AppointmentPatientsList = async (req, res, next) => {
-    const { id, isAdmin, isDoctor } = req.user;
-
+    // const { id } = req.user;
     try {
-        if (isDoctor) {
-            const patientList = await appointMentSchema.find({ doctor_id: id });
-            res.status(200).json(patientList);
-        }
-        else if (isAdmin) {
-            const appointmentPatients = await appointMentSchema.find({});
-            res.status(200).json(appointmentPatients);
-        }
-        else {
-            const appointmentPatients = await appointMentSchema.find({ user_id: id });
-            res.status(200).json(appointmentPatients);
-        }
+        const data = await appointMentSchema.find(); // Adjust the query as needed
+        res.json(data);
+    } catch (error) {
+        res.status(500).send(error);
     }
-    catch (err) {
-        next(err);
-    }
+
+
 }
+
 
 export const IsDoctor = async (req, res, next) => {
     const docEmail = req.body.email;
     try {
         const isDoc = await Users.findOne({ email: docEmail })
-        if (isDoc.isDoctor = true) {
+        if (isDoc.isDoctor === true) {
             const { password, ...others } = isDoc._doc;
             res.status(200).json({ ...others })
         }

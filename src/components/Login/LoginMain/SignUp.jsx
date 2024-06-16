@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
 import { FaCheck, FaEnvelope, FaLock, FaTimes, FaUser } from 'react-icons/fa';
 import SocialSignUp from './SocialSignUp';
-import { createAccountWithEmail } from './LoginManager';
 import Spinner from 'react-bootstrap/Spinner'
 import swal from 'sweetalert';
 import axios from 'axios';
 
 
-// password regex
-// ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$
-// At least one upper case English letter, (?=.*?[A-Z])
-// At least one lower case English letter, (?=.*?[a-z])
-// At least one digit, (?=.*?[0-9])
-// At least one special character, (?=.*?[#?!@$%^&*-])
-// Minimum eight in length .{8,} (with the anchors)
-
-
 const SignUp = ({ handleResponse }) => {
-    const baseUrl = 'http://localhost:4000';
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const [error, setError] = useState({})
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({})

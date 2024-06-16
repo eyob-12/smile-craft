@@ -1,9 +1,9 @@
 import express from 'express';
 import {
-AddAppointMentCollection, AddDoctor,
-AppointmentPatientsList, appointMentByDate,
-getDoctors, IsDoctor, AddServices, ServicesList,
-AddReview, ReviewsList, UpdateUserInfo
+  AddAppointMentCollection, AddDoctor,
+  AppointmentPatientsList, appointMentByDate,
+  getDoctors, IsDoctor, AddServices, ServicesList,
+  AddReview, ReviewsList, UpdateUserInfo, deleteDoctor
 }
   from '../controllers/doctor.js';
 
@@ -32,10 +32,12 @@ router.post('/auth/addServices', verifyToken, verifyAdmin, AddServices);
 
 
 //user or admin can access
-router.post('/auth/addAppointMent', verifyToken, AddAppointMentCollection);
+router.post('/auth/addAppointment', verifyToken, AddAppointMentCollection);
+
 router.post('/auth/appointByDate', verifyToken, verifyUser, appointMentByDate);
 router.post('/auth/addReview', verifyToken, AddReview);
 router.put('/auth/updateInfo/:id', verifyToken, UpdateUserInfo);
+router.delete('/auth/deleteDoctor/:id', verifyToken, deleteDoctor);
 router.get('/auth/patients', verifyToken, verifyUser, AppointmentPatientsList);
 router.get('/auth/users', verifyToken, verifyAdmin, viewUser);
 
@@ -49,4 +51,5 @@ router.get('/auth/doctors', getDoctors);
 //auth
 router.post('/auth/register', register);
 router.post('/auth/login', login);
+
 export default router;

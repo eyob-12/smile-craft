@@ -1,11 +1,13 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+
 const AppointMentShorList = ({ appointment }) => {
     return (
-        <div className='card shadow bg-secondary'>
+        <div className='card shadow ms-2 mb-5'>
             <Table striped responsive>
                 <thead>
                     <tr>
+                        <th className="text-secondary" scope="col">NO</th>
                         <th className="text-secondary" scope="col">Name</th>
                         <th className="text-secondary" scope="col">Phone</th>
                         <th className="text-secondary" scope="col">Email</th>
@@ -17,21 +19,23 @@ const AppointMentShorList = ({ appointment }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointment && appointment?.map((item, index) =>
-                        <tr key={index + 200}>
+                    {appointment && appointment.map((item, index) => (
+                        <tr key={item._id}>
                             <td>{index + 1}</td>
                             <td>{item.username}</td>
                             <td>{item.phone}</td>
                             <td>{item.email}</td>
                             <td>{item.gender}</td>
                             <td>{item.serviceTitle}</td>
-                            <td>{item.appointmantDate}</td>
+                            <td>{new Date(item.appointmantDate).toLocaleDateString()}</td>
                             <td>{item.weight}</td>
-                            <td className="btn-group">
-                                <button className="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Not Visited</button>
+                            <td className="btn-group w-100">
+                                <button className="btn btn-info btn-sm dropdown-toggle w-100" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Not Visited
+                                </button>
                             </td>
                         </tr>
-                    )}
+                    ))}
                 </tbody>
             </Table>
         </div>

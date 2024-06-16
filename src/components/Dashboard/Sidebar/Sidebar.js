@@ -1,24 +1,24 @@
-import { faCalendar, faCog, faGripHorizontal, faHome, faSignOutAlt, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faGripHorizontal, faHome, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../../App';
+import React, { useContext, } from 'react';
+import { Link, } from 'react-router-dom';
+
 import './Sidebar.css';
 import Spinner from 'react-bootstrap/Spinner'
-import toast from 'react-hot-toast';
+
 import { AuthContext } from '../../Context/AuthContext';
 import swal from 'sweetalert';
 
 
 const Sidebar = () => {
-    const { user, loading, erro, dispatch } = useContext(AuthContext);
-    const hanldeSignOut = () => {
+    const { user, loading, dispatch } = useContext(AuthContext);
+    const handleSignOut = () => {
         swal({
-            icon:'success',
-            text:'Successfully LogOut',
+            icon: 'success',
+            text: 'Successfully LogOut',
             timer: 2000
         })
-            dispatch({ type: "LOGOUT" })
+        dispatch({ type: "LOGOUT" })
     }
 
     return (
@@ -44,11 +44,11 @@ const Sidebar = () => {
 
                 {user.isAdmin &&
                     <>
-                    <li>
-                        <Link to="/patients" className="text-nowrap text-white text-decoration-none"><FontAwesomeIcon icon={faUser} />
-                            <span>Patients</span>
-                        </Link>
-                    </li>
+                        <li>
+                            <Link to="/patients" className="text-nowrap text-white text-decoration-none"><FontAwesomeIcon icon={faUser} />
+                                <span>Patients</span>
+                            </Link>
+                        </li>
                         <li>
                             <Link to="/doctors" className="text-nowrap text-white text-decoration-none"><FontAwesomeIcon icon={faUserPlus} />
                                 <span>Doctors</span>
@@ -69,11 +69,18 @@ const Sidebar = () => {
                 </li>
             </ul>
             <div className="desh-logout">
-                <Link to="/" className="text-nowrap text-white text-decoration-none" onClick={hanldeSignOut}>
-                    <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /><span>
-                        {loading ? <Spinner animation="border" variant="info" /> : "LogOut"}
-                    </span>
-                </Link>
+                <div className="desh-logout">
+                    {user.image ? (
+                        <img className="logout-image rounded-circle" src={user.image} alt="log out" />
+                    ) : (
+                        <img className="logout-image rounded-circle" src="https://www.pinclipart.com/picdir/middle/63-635365_artboard-landscap-ethiopia-clipart.png" alt="log out" />
+                    )}
+                    <Link to="/" className="text-nowrap text-white text-decoration-none ms-2 fs-6" onClick={handleSignOut}>
+                        <span>
+                            {loading ? <Spinner animation="border" variant="info" /> : "LogOut"}
+                        </span>
+                    </Link>
+                </div>
             </div>
         </div>
     );

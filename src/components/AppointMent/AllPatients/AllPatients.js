@@ -6,8 +6,8 @@ import DeshActivity from './DeshActivity';
 import useFetch from '../../hooks/useFetch';
 
 const AllPatients = () => {
-    const baseUrl = 'http://localhost:4000';
-    const { data, loading, error } = useFetch(`${baseUrl}/auth/patients`, {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+    const { data } = useFetch(`${baseUrl}/auth/patients`, {
         withCredentials: true,
     });
     return (

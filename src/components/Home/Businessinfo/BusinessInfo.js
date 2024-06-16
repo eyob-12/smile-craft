@@ -5,19 +5,19 @@ import React from 'react';
 const infosData = [
     {
         title: 'Opening Hours',
-        description: 'We are open 7 days',
+        description: 'We are open 24/7',
         icon: faClock,
         background: 'primary'
     },
     {
         title: 'Visit Our Location',
-        description: 'Brooklyn, NY 10003 USA',
+        description: 'Bole, AddisAbeba, Ethiopia',
         icon: faMapMarker,
         background: 'dark'
     },
     {
         title: 'Call us now',
-        description: '+15697854124',
+        description: '+251-953-226-886',
         icon: faPhone,
         background: 'primary'
     }

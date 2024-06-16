@@ -1,23 +1,30 @@
 .popImg {
     height: 40px;
     border-radius: 50%;
-    cursor: pointer!important;
-    /* margin: 0.2rem 0 0 0.7rem; */
+    cursor: pointer !important;
 }
+
 .popUserImg {
     height: 50px;
     border-radius: 50%;
-    /* margin-bottom: 8px; */
 }
+
 .userName, 
-.userEmail{
+.userEmail {
     margin-bottom: 0;
     font-size: 1rem;
     font-weight: 700;
 }
+
 .userEmail {
     margin: 0.1rem 0 0.5rem;
     font-weight: 600;
-    font-size: 0.9rem;
-    color: rgba(0,0,0,.7);
+    font-size: 0.4rem;
+    color: rgb(229, 227, 227);
+}
+
+.large-popover {
+    width: 500px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
 }

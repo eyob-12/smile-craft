@@ -7,12 +7,12 @@ import Sidebar from '../Sidebar/Sidebar';
 import swal from 'sweetalert';
 
 const AddReview = () => {
-    const baseUrl = "http://localhost:4000";
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const [review, setReview] = useState({ address: '', desc: '' });
     const { data, loading, error, reFetchData } = useFetch(`${baseUrl}/auth/reviews`);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [showForm, setShowForm] = useState(false);
+
 
     const handleChange = (e) => {
         setReview(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,7 +25,9 @@ const AddReview = () => {
         review.name = user.username;
         try {
             if (user._id && review.desc) {
-                const res = await axios.post(`${baseUrl}/auth/addReview`, review);
+                const res = await axios.post(`${baseUrl}/auth/addReview`, review, {
+                    withCredentials: true
+                });
                 swal({
                     icon: 'success',
                     text: 'Review submitted successfully',
@@ -81,7 +83,7 @@ const AddReview = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary my-3">Submit</button>
+                    <button type="submit" className="btn btn-outline-info w-100 mt-3">Submit</button>
                 </form>
                 {loading ? (
                     <p>Loading...</p>

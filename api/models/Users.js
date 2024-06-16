@@ -1,33 +1,33 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    username:{
+    username: {
         type: String,
         required: true,
         unique: true,
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true,
     },
-    password:{
+    password: {
         type: String,
         required: true,
     },
-    image:{
+    image: {
         type: String,
-        default: null
+        default: "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp"
     },
-    isAdmin:{
+    isAdmin: {
         type: Boolean,
         default: false,
     },
-    isDoctor:{
+    isDoctor: {
         type: Boolean,
         default: false,
     }
-    
-}, {timestamps: true})
+
+}, { timestamps: true })
 
 export default mongoose.model('User', UserSchema);

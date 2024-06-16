@@ -12,9 +12,9 @@ import { Toast } from 'react-bootstrap';
 
 const SignIn = ({ handleResponse }) => {
     const { user, loading, error, dispatch } = useContext(AuthContext);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    const baseUrl = 'http://localhost:4000';
+    const baseUrl = process.env.REACT_APP_BASE_URL;
 
     const [show, setShow] = useState(true);
 
