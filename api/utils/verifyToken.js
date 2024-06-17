@@ -5,6 +5,7 @@ export const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
 
   if (!token) {
+    console.log("No token provided");
     return next(createError(401, "You are not authenticated!"));
   }
 

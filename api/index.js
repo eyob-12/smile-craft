@@ -24,7 +24,12 @@ mongoose.connection.on("disconnected", () => { console.log("Disconnected") });
 
 const connect = async () => {
     try {
-        mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose.connect(process.env.MONGO,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                serverSelectionTimeoutMS: 5000,
+            });
         console.log("Connected to Mongodb");
     } catch (err) {
         console.log(err);
