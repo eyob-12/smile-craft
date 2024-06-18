@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "functions": {
-    "index.js": {
-      "maxDuration": 30 
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/(.*)",
-      "dest": "index.js"
+      "src": "/*",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    { "src": "/uploads/(.*)", "dest": "/uploads/$1" },
+    { "handle": "filesystem" }, 
+    { "src": "/(.*)", "dest": "/index.js" }
   ]
 }
