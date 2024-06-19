@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { AuthContext } from '../../Context/AuthContext';
 
 const PrivateRoute = ({ children }) => {
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
       return false;
     }
 
-    const decodedToken = jwt_decode(token);
+    const decodedToken = jwtDecode(token);
     const currentTime = new Date().getTime() / 1000;
     return decodedToken.exp > currentTime;
   }
