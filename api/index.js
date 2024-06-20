@@ -13,14 +13,15 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
-
+// Define allowed origins
 const allowedOrigins = [
     'http://localhost:3000',
-    'https://smilecraft.vercel.app/' // Replace with your actual Vercel URL
+    'https://smilecraft.vercel.app' // Replace with your actual Vercel URL
 ];
 
 const app = express();
+dotenv.config();
+
 app.use(cors({
     origin: function (origin, callback) {
         // allow requests with no origin (like mobile apps, curl, etc)
@@ -40,12 +41,11 @@ mongoose.connection.on("disconnected", () => { console.log("Disconnected") });
 
 const connect = async () => {
     try {
-        await mongoose.connect(process.env.MONGO,
-            {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                serverSelectionTimeoutMS: 5000,
-            });
+        await mongoose.connect(process.env.MONGO, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000,
+        });
         console.log("Connected to Mongodb");
     } catch (err) {
         console.log(err);
