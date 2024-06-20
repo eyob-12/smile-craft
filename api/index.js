@@ -12,19 +12,35 @@ import { fileURLToPath } from 'url';
 // Convert `import.meta.url` to a path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const allowedOrigin = 'http://localhost:3000';
+
+dotenv.config();
+
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://smilecraft.vercel.app/' // Replace with your actual Vercel URL
+];
+
 const app = express();
 app.use(cors({
-    origin: allowedOrigin,
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps, curl, etc)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true, // Allow credentials (cookies)
 }));
+
 const port = 4001;
 
 mongoose.connection.on("disconnected", () => { console.log("Disconnected") });
 
 const connect = async () => {
     try {
-        mongoose.connect(process.env.MONGO,
+        await mongoose.connect(process.env.MONGO,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
@@ -37,7 +53,6 @@ const connect = async () => {
 };
 
 app.use(cookieParser());
-dotenv.config();
 app.use(express.json());
 app.use(bodyParser.json());
 
